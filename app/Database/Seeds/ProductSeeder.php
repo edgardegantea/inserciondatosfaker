@@ -16,20 +16,22 @@ class ProductSeeder extends Seeder
             $created_at = $faker->dateTime();
             $updated_at = $faker->dateTimeBetween($created_at);
             $deleted_at = $faker->dateTimeBetween($updated_at);
+            $purchase_price = $faker->randomFloat(2, 0.1, 4500);
+            $unit_price = $purchase_price + $faker->randomFloat(2, 0, 500);
 
             $products[] = [
                 'name'          => $faker->sentence(),
-                'description'   => $faker->paragraphs(),
-                'purchase_price'=> $faker->randomFloat(2),
-                'unit_price'    => $faker->randomFloat(2),
+                'description'   => $faker->paragraph(),
+                'purchase_price'=> $purchase_price,
+                'unit_price'    => $unit_price,
                 'min_stock'     => $faker->numberBetween(5, 20),
                 'max_stock'     => $faker->numberBetween(100, 2000),
                 'stock'         => $faker->numberBetween(0, 2000),
-                'dimensions'    => $faker->randomNumber(3, false),
+                'dimensions'    => $faker->randomNumber(3),
                 'weight'        => $faker->numberBetween(1, 15),
                 'observation'   => $faker->sentence(),
                 'status'        => $faker->numberBetween(0, 1),
-                'category'      => $faker->numberBetween(1, 4),
+                'category'      => $faker->numberBetween(9, 14),
                 'created_at'    => $created_at->format('Y-m-d H:i:s'),
                 'updated_at'    => $updated_at->format('Y-m-d H:i:s'),
                 'deleted_at'    => $deleted_at->format('Y-m-d H:i:s')
